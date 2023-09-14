@@ -8,12 +8,12 @@ import (
 	"github.com/spf13/viper"
 )
 
-var cfgFile     string
+var cfgFile string
 
 var rootCmd = &cobra.Command{
 	Use:   "spacetraders",
 	Short: "spacetraders hub is a simple game based on spacetraders",
-	Long: `spacetraders hub is a simple game based on spacetraders`,
+	Long:  `spacetraders hub is a simple game based on spacetraders`,
 	Run: func(cmd *cobra.Command, args []string) {
 		// Do Stuff Here
 	},
@@ -22,7 +22,6 @@ var rootCmd = &cobra.Command{
 func Execute() {
 	cobra.CheckErr(rootCmd.Execute())
 }
-
 
 func init() {
 	cobra.OnInitialize(initConfig)

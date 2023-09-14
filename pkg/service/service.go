@@ -20,7 +20,7 @@ type service struct {
 	repository mongo.Repository
 }
 
-func NewService(logger *zap.Logger, repo mongo.Repository) Service {
+func NewService(logger *zap.Logger, repo mongo.Repository) (Service, error) {
 	cfg := client.NewConfiguration()
 	client := client.NewAPIClient(cfg)
 
@@ -28,7 +28,7 @@ func NewService(logger *zap.Logger, repo mongo.Repository) Service {
 		client:     client,
 		repository: repo,
 		logger:     logger,
-	}
+	}, nil
 }
 
 func (s *service) RegisterNewAgent(ctx context.Context, faction, email, symbol string) (*client.Register201Response, error) {
@@ -40,7 +40,7 @@ func (s *service) RegisterNewAgent(ctx context.Context, faction, email, symbol s
 
 	apiResp, _, err := s.client.DefaultAPI.Register(ctx).RegisterRequest(client.RegisterRequest{Email: &email, Faction: f, Symbol: symbol}).Execute()
 	if err != nil {
-		s.logger.Error(errors.ErrFailedAPIRequest.Error(), zap.String("type", "RegisterNewAgent"), zap.Error(err))
+		s.logger.Error(err.Error(), zap.String("type", "RegisterNewAgent"))
 		return nil, errors.ErrFailedAPIRequest
 	}
 
@@ -52,6 +52,9 @@ func (s *service) RegisterNewAgent(ctx context.Context, faction, email, symbol s
 
 	//TODO add user to database
 	err = s.repository.AddUser(ctx, user)
+	if err != nil {
+		return nil, errors.ErrFailedInsertMongo
+	}
 
 	return apiResp, err
 }

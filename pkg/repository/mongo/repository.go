@@ -3,7 +3,7 @@ package mongo
 import (
 	"context"
 	"space-traders-playground/pkg/dom"
-	"space-traders-playground/pkg/errors"
+	"space-traders-playground/pkg/static"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -12,7 +12,7 @@ import (
 )
 
 type Repository interface {
-	AddUser(ctx context.Context, user dom.User) *dom.Error
+	AddUser(ctx context.Context, user dom.User) error
 }
 
 type repository struct {
@@ -50,13 +50,13 @@ func NewRepository(conf Config, logger *zap.Logger) (Repository, error) {
 }
 
 // AddUser implements Repository.
-func (r *repository) AddUser(ctx context.Context, user dom.User) *dom.Error {
-	collection := r.db.Collection("users")
+func (r *repository) AddUser(ctx context.Context, user dom.User) error {
+	collection := r.db.Collection(static.MONGO_REPO_USERS_COLLECTION)
 	// Insert the person document into the collection
 	_, err := collection.InsertOne(ctx, user)
 	if err != nil {
-		r.logger.Error(errors.ErrFailedInsertMongo.Error(), zap.String("collection", "users"), zap.Error(err))
-		return &errors.ErrFailedInsertMongo
+		r.logger.Error(err.Error())
+		return err
 	}
 
 	return nil

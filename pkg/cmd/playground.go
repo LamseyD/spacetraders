@@ -2,8 +2,6 @@ package cmd
 
 import (
 	"context"
-	"space-traders-playground/pkg/repository/mongo"
-	"space-traders-playground/pkg/service"
 
 	"github.com/spf13/cobra"
 	"github.com/vrischmann/envconfig"
@@ -17,19 +15,13 @@ func play(args []string) {
 		panic(err)
 	}
 
-	var conf mongo.Config
+	var conf Config
 
 	if err := envconfig.Init(&conf); err != nil {
 		logger.Fatal(err.Error())
 	}
-
-	repo, err := mongo.NewRepository(conf, logger)
-	if err != nil {
-		logger.Fatal(err.Error())
-	}
-
-	svc := service.NewService(logger, repo)
-	svc.RegisterNewAgent(ctx, "test", "test", "test")
+	svc := NewGameService(ctx, logger)
+	svc.RegisterNewAgent(ctx, "UNITED", conf.Email, conf.Callsign)
 }
 
 var playgroundCmd = &cobra.Command{
