@@ -5,7 +5,7 @@ import (
 	client "space-traders-playground/pkg/clients/openapi"
 	"space-traders-playground/pkg/dom"
 	errors "space-traders-playground/pkg/errors"
-	repository "space-traders-playground/pkg/repository"
+	"space-traders-playground/pkg/repository/mongo"
 
 	"go.uber.org/zap"
 )
@@ -17,10 +17,10 @@ type Service interface {
 type service struct {
 	client     *client.APIClient
 	logger     *zap.Logger
-	repository repository.Repository
+	repository mongo.Repository
 }
 
-func NewService(logger *zap.Logger, repo repository.Repository) Service {
+func NewService(logger *zap.Logger, repo mongo.Repository) Service {
 	cfg := client.NewConfiguration()
 	client := client.NewAPIClient(cfg)
 
