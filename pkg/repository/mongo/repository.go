@@ -1,8 +1,7 @@
-package repository
+package mongo
 
 import (
 	"context"
-	"log"
 	"space-traders-playground/pkg/dom"
 	"space-traders-playground/pkg/errors"
 	"time"
@@ -22,7 +21,7 @@ type repository struct {
 	logger *zap.Logger
 }
 
-func NewRepository(conf Config, logger *zap.Logger) Repository {
+func NewRepository(conf Config, logger *zap.Logger) (Repository, error) {
 
 	uri := conf.GetConnectionString()
 	clientOptions := options.Client().ApplyURI(uri)
@@ -30,7 +29,7 @@ func NewRepository(conf Config, logger *zap.Logger) Repository {
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	// Ping the MongoDB server to check if the connection is successful
@@ -38,7 +37,7 @@ func NewRepository(conf Config, logger *zap.Logger) Repository {
 	defer cancel()
 	err = client.Ping(ctx, nil)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	db := client.Database(conf.Database)
@@ -47,7 +46,7 @@ func NewRepository(conf Config, logger *zap.Logger) Repository {
 		client: client,
 		db:     db,
 		logger: logger,
-	}
+	}, nil
 }
 
 // AddUser implements Repository.
