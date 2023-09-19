@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"context"
+	"fmt"
 
 	"github.com/spf13/cobra"
 	"github.com/vrischmann/envconfig"
@@ -9,7 +9,7 @@ import (
 )
 
 func play(args []string) {
-	ctx := context.Background()
+	// ctx := context.Background()
 	logger, err := zap.NewDevelopment()
 	if err != nil {
 		panic(err)
@@ -20,8 +20,9 @@ func play(args []string) {
 	if err := envconfig.Init(&conf); err != nil {
 		logger.Fatal(err.Error())
 	}
-	svc := NewGameService(ctx, logger)
-	svc.RegisterNewAgent(ctx, "UNITED", conf.Email, conf.Callsign)
+	fmt.Println("HelloWorlD")
+	// svc := NewGameService(ctx, logger)
+	// svc.RegisterNewAgent(ctx, "UNITED", conf.Email, conf.Callsign)
 }
 
 var playgroundCmd = &cobra.Command{

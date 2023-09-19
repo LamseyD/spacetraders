@@ -1,7 +1,7 @@
 /*
 SpaceTraders API
 
-SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
 
 API version: 2.0.0
 Contact: joel@spacetraders.io
@@ -20,14 +20,13 @@ import (
 	"strings"
 )
 
-
 // SystemsAPIService SystemsAPI service
 type SystemsAPIService service
 
 type ApiGetJumpGateRequest struct {
-	ctx context.Context
-	ApiService *SystemsAPIService
-	systemSymbol string
+	ctx            context.Context
+	ApiService     *SystemsAPIService
+	systemSymbol   string
 	waypointSymbol string
 }
 
@@ -42,28 +41,29 @@ Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to
 
 The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param systemSymbol The system symbol
- @param waypointSymbol The waypoint symbol
- @return ApiGetJumpGateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param systemSymbol The system symbol
+	@param waypointSymbol The waypoint symbol
+	@return ApiGetJumpGateRequest
 */
 func (a *SystemsAPIService) GetJumpGate(ctx context.Context, systemSymbol string, waypointSymbol string) ApiGetJumpGateRequest {
 	return ApiGetJumpGateRequest{
-		ApiService: a,
-		ctx: ctx,
-		systemSymbol: systemSymbol,
+		ApiService:     a,
+		ctx:            ctx,
+		systemSymbol:   systemSymbol,
 		waypointSymbol: waypointSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetJumpGate200Response
+//
+//	@return GetJumpGate200Response
 func (a *SystemsAPIService) GetJumpGateExecute(r ApiGetJumpGateRequest) (*GetJumpGate200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetJumpGate200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetJumpGate200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SystemsAPIService.GetJumpGate")
@@ -134,9 +134,9 @@ func (a *SystemsAPIService) GetJumpGateExecute(r ApiGetJumpGateRequest) (*GetJum
 }
 
 type ApiGetMarketRequest struct {
-	ctx context.Context
-	ApiService *SystemsAPIService
-	systemSymbol string
+	ctx            context.Context
+	ApiService     *SystemsAPIService
+	systemSymbol   string
 	waypointSymbol string
 }
 
@@ -151,28 +151,29 @@ Retrieve imports, exports and exchange data from a marketplace. Requires a waypo
 
 Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param systemSymbol The system symbol
- @param waypointSymbol The waypoint symbol
- @return ApiGetMarketRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param systemSymbol The system symbol
+	@param waypointSymbol The waypoint symbol
+	@return ApiGetMarketRequest
 */
 func (a *SystemsAPIService) GetMarket(ctx context.Context, systemSymbol string, waypointSymbol string) ApiGetMarketRequest {
 	return ApiGetMarketRequest{
-		ApiService: a,
-		ctx: ctx,
-		systemSymbol: systemSymbol,
+		ApiService:     a,
+		ctx:            ctx,
+		systemSymbol:   systemSymbol,
 		waypointSymbol: waypointSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetMarket200Response
+//
+//	@return GetMarket200Response
 func (a *SystemsAPIService) GetMarketExecute(r ApiGetMarketRequest) (*GetMarket200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetMarket200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetMarket200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SystemsAPIService.GetMarket")
@@ -243,9 +244,9 @@ func (a *SystemsAPIService) GetMarketExecute(r ApiGetMarketRequest) (*GetMarket2
 }
 
 type ApiGetShipyardRequest struct {
-	ctx context.Context
-	ApiService *SystemsAPIService
-	systemSymbol string
+	ctx            context.Context
+	ApiService     *SystemsAPIService
+	systemSymbol   string
 	waypointSymbol string
 }
 
@@ -258,28 +259,29 @@ GetShipyard Get Shipyard
 
 Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param systemSymbol The system symbol
- @param waypointSymbol The waypoint symbol
- @return ApiGetShipyardRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param systemSymbol The system symbol
+	@param waypointSymbol The waypoint symbol
+	@return ApiGetShipyardRequest
 */
 func (a *SystemsAPIService) GetShipyard(ctx context.Context, systemSymbol string, waypointSymbol string) ApiGetShipyardRequest {
 	return ApiGetShipyardRequest{
-		ApiService: a,
-		ctx: ctx,
-		systemSymbol: systemSymbol,
+		ApiService:     a,
+		ctx:            ctx,
+		systemSymbol:   systemSymbol,
 		waypointSymbol: waypointSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetShipyard200Response
+//
+//	@return GetShipyard200Response
 func (a *SystemsAPIService) GetShipyardExecute(r ApiGetShipyardRequest) (*GetShipyard200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetShipyard200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetShipyard200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SystemsAPIService.GetShipyard")
@@ -350,8 +352,8 @@ func (a *SystemsAPIService) GetShipyardExecute(r ApiGetShipyardRequest) (*GetShi
 }
 
 type ApiGetSystemRequest struct {
-	ctx context.Context
-	ApiService *SystemsAPIService
+	ctx          context.Context
+	ApiService   *SystemsAPIService
 	systemSymbol string
 }
 
@@ -364,26 +366,27 @@ GetSystem Get System
 
 Get the details of a system.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param systemSymbol The system symbol
- @return ApiGetSystemRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param systemSymbol The system symbol
+	@return ApiGetSystemRequest
 */
 func (a *SystemsAPIService) GetSystem(ctx context.Context, systemSymbol string) ApiGetSystemRequest {
 	return ApiGetSystemRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		systemSymbol: systemSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetSystem200Response
+//
+//	@return GetSystem200Response
 func (a *SystemsAPIService) GetSystemExecute(r ApiGetSystemRequest) (*GetSystem200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetSystem200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetSystem200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SystemsAPIService.GetSystem")
@@ -453,11 +456,11 @@ func (a *SystemsAPIService) GetSystemExecute(r ApiGetSystemRequest) (*GetSystem2
 }
 
 type ApiGetSystemWaypointsRequest struct {
-	ctx context.Context
-	ApiService *SystemsAPIService
+	ctx          context.Context
+	ApiService   *SystemsAPIService
 	systemSymbol string
-	page *int32
-	limit *int32
+	page         *int32
+	limit        *int32
 }
 
 // What entry offset to request
@@ -483,26 +486,27 @@ Return a paginated list of all of the waypoints for a given system.
 
 If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param systemSymbol The system symbol
- @return ApiGetSystemWaypointsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param systemSymbol The system symbol
+	@return ApiGetSystemWaypointsRequest
 */
 func (a *SystemsAPIService) GetSystemWaypoints(ctx context.Context, systemSymbol string) ApiGetSystemWaypointsRequest {
 	return ApiGetSystemWaypointsRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:   a,
+		ctx:          ctx,
 		systemSymbol: systemSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetSystemWaypoints200Response
+//
+//	@return GetSystemWaypoints200Response
 func (a *SystemsAPIService) GetSystemWaypointsExecute(r ApiGetSystemWaypointsRequest) (*GetSystemWaypoints200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetSystemWaypoints200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetSystemWaypoints200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SystemsAPIService.GetSystemWaypoints")
@@ -578,10 +582,10 @@ func (a *SystemsAPIService) GetSystemWaypointsExecute(r ApiGetSystemWaypointsReq
 }
 
 type ApiGetSystemsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *SystemsAPIService
-	page *int32
-	limit *int32
+	page       *int32
+	limit      *int32
 }
 
 // What entry offset to request
@@ -605,24 +609,25 @@ GetSystems List Systems
 
 Return a paginated list of all systems.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetSystemsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetSystemsRequest
 */
 func (a *SystemsAPIService) GetSystems(ctx context.Context) ApiGetSystemsRequest {
 	return ApiGetSystemsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetSystems200Response
+//
+//	@return GetSystems200Response
 func (a *SystemsAPIService) GetSystemsExecute(r ApiGetSystemsRequest) (*GetSystems200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetSystems200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetSystems200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SystemsAPIService.GetSystems")
@@ -697,9 +702,9 @@ func (a *SystemsAPIService) GetSystemsExecute(r ApiGetSystemsRequest) (*GetSyste
 }
 
 type ApiGetWaypointRequest struct {
-	ctx context.Context
-	ApiService *SystemsAPIService
-	systemSymbol string
+	ctx            context.Context
+	ApiService     *SystemsAPIService
+	systemSymbol   string
 	waypointSymbol string
 }
 
@@ -714,28 +719,29 @@ View the details of a waypoint.
 
 If the waypoint is uncharted, it will return the 'Uncharted' trait instead of its actual traits.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param systemSymbol The system symbol
- @param waypointSymbol The waypoint symbol
- @return ApiGetWaypointRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param systemSymbol The system symbol
+	@param waypointSymbol The waypoint symbol
+	@return ApiGetWaypointRequest
 */
 func (a *SystemsAPIService) GetWaypoint(ctx context.Context, systemSymbol string, waypointSymbol string) ApiGetWaypointRequest {
 	return ApiGetWaypointRequest{
-		ApiService: a,
-		ctx: ctx,
-		systemSymbol: systemSymbol,
+		ApiService:     a,
+		ctx:            ctx,
+		systemSymbol:   systemSymbol,
 		waypointSymbol: waypointSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetWaypoint200Response
+//
+//	@return GetWaypoint200Response
 func (a *SystemsAPIService) GetWaypointExecute(r ApiGetWaypointRequest) (*GetWaypoint200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetWaypoint200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetWaypoint200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SystemsAPIService.GetWaypoint")

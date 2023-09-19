@@ -1,7 +1,7 @@
 /*
 SpaceTraders API
 
-SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
 
 API version: 2.0.0
 Contact: joel@spacetraders.io
@@ -21,19 +21,19 @@ var _ MappedNullable = &Ship{}
 // Ship Ship details.
 type Ship struct {
 	// The globally unique identifier of the ship in the following format: `[AGENT_SYMBOL]-[HEX_ID]`
-	Symbol string `json:"symbol"`
+	Symbol       string           `json:"symbol"`
 	Registration ShipRegistration `json:"registration"`
-	Nav ShipNav `json:"nav"`
-	Crew ShipCrew `json:"crew"`
-	Frame ShipFrame `json:"frame"`
-	Reactor ShipReactor `json:"reactor"`
-	Engine ShipEngine `json:"engine"`
+	Nav          ShipNav          `json:"nav"`
+	Crew         ShipCrew         `json:"crew"`
+	Frame        ShipFrame        `json:"frame"`
+	Reactor      ShipReactor      `json:"reactor"`
+	Engine       ShipEngine       `json:"engine"`
 	// Modules installed in this ship.
 	Modules []ShipModule `json:"modules"`
 	// Mounts installed in this ship.
 	Mounts []ShipMount `json:"mounts"`
-	Cargo ShipCargo `json:"cargo"`
-	Fuel ShipFuel `json:"fuel"`
+	Cargo  ShipCargo   `json:"cargo"`
+	Fuel   ShipFuel    `json:"fuel"`
 }
 
 // NewShip instantiates a new Ship object
@@ -329,7 +329,7 @@ func (o *Ship) SetFuel(v ShipFuel) {
 }
 
 func (o Ship) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -387,5 +387,3 @@ func (v *NullableShip) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

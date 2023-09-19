@@ -1,7 +1,7 @@
 /*
 SpaceTraders API
 
-SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
 
 API version: 2.0.0
 Contact: joel@spacetraders.io
@@ -20,12 +20,11 @@ import (
 	"strings"
 )
 
-
 // FleetAPIService FleetAPI service
 type FleetAPIService service
 
 type ApiCreateChartRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -43,26 +42,27 @@ Most waypoints in the universe are uncharted by default. These waypoints have th
 
 Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint's traits.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The symbol of the ship.
- @return ApiCreateChartRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The symbol of the ship.
+	@return ApiCreateChartRequest
 */
 func (a *FleetAPIService) CreateChart(ctx context.Context, shipSymbol string) ApiCreateChartRequest {
 	return ApiCreateChartRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return CreateChart201Response
+//
+//	@return CreateChart201Response
 func (a *FleetAPIService) CreateChartExecute(r ApiCreateChartRequest) (*CreateChart201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateChart201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateChart201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.CreateChart")
@@ -132,7 +132,7 @@ func (a *FleetAPIService) CreateChartExecute(r ApiCreateChartRequest) (*CreateCh
 }
 
 type ApiCreateShipShipScanRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -150,26 +150,27 @@ Requires a ship to have the `Sensor Array` mount installed to use.
 
 The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiCreateShipShipScanRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiCreateShipShipScanRequest
 */
 func (a *FleetAPIService) CreateShipShipScan(ctx context.Context, shipSymbol string) ApiCreateShipShipScanRequest {
 	return ApiCreateShipShipScanRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return CreateShipShipScan201Response
+//
+//	@return CreateShipShipScan201Response
 func (a *FleetAPIService) CreateShipShipScanExecute(r ApiCreateShipShipScanRequest) (*CreateShipShipScan201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateShipShipScan201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateShipShipScan201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.CreateShipShipScan")
@@ -239,7 +240,7 @@ func (a *FleetAPIService) CreateShipShipScanExecute(r ApiCreateShipShipScanReque
 }
 
 type ApiCreateShipSystemScanRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -255,26 +256,27 @@ Scan for nearby systems, retrieving information on the systems' distance from th
 
 The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiCreateShipSystemScanRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiCreateShipSystemScanRequest
 */
 func (a *FleetAPIService) CreateShipSystemScan(ctx context.Context, shipSymbol string) ApiCreateShipSystemScanRequest {
 	return ApiCreateShipSystemScanRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return CreateShipSystemScan201Response
+//
+//	@return CreateShipSystemScan201Response
 func (a *FleetAPIService) CreateShipSystemScanExecute(r ApiCreateShipSystemScanRequest) (*CreateShipSystemScan201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateShipSystemScan201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateShipSystemScan201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.CreateShipSystemScan")
@@ -344,7 +346,7 @@ func (a *FleetAPIService) CreateShipSystemScanExecute(r ApiCreateShipSystemScanR
 }
 
 type ApiCreateShipWaypointScanRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -362,26 +364,27 @@ Requires a ship to have the `Sensor Array` mount installed to use.
 
 The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiCreateShipWaypointScanRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiCreateShipWaypointScanRequest
 */
 func (a *FleetAPIService) CreateShipWaypointScan(ctx context.Context, shipSymbol string) ApiCreateShipWaypointScanRequest {
 	return ApiCreateShipWaypointScanRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return CreateShipWaypointScan201Response
+//
+//	@return CreateShipWaypointScan201Response
 func (a *FleetAPIService) CreateShipWaypointScanExecute(r ApiCreateShipWaypointScanRequest) (*CreateShipWaypointScan201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateShipWaypointScan201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateShipWaypointScan201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.CreateShipWaypointScan")
@@ -451,7 +454,7 @@ func (a *FleetAPIService) CreateShipWaypointScanExecute(r ApiCreateShipWaypointS
 }
 
 type ApiCreateSurveyRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -473,26 +476,27 @@ Your ship will enter a cooldown after surveying in which it is unable to perform
 
 A ship must have the `Surveyor` mount installed in order to use this function.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The symbol of the ship.
- @return ApiCreateSurveyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The symbol of the ship.
+	@return ApiCreateSurveyRequest
 */
 func (a *FleetAPIService) CreateSurvey(ctx context.Context, shipSymbol string) ApiCreateSurveyRequest {
 	return ApiCreateSurveyRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return CreateSurvey201Response
+//
+//	@return CreateSurvey201Response
 func (a *FleetAPIService) CreateSurveyExecute(r ApiCreateSurveyRequest) (*CreateSurvey201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateSurvey201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateSurvey201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.CreateSurvey")
@@ -562,7 +566,7 @@ func (a *FleetAPIService) CreateSurveyExecute(r ApiCreateSurveyRequest) (*Create
 }
 
 type ApiDockShipRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -580,26 +584,27 @@ Docked ships can access elements in their current location, such as the market o
 
 The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The symbol of the ship.
- @return ApiDockShipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The symbol of the ship.
+	@return ApiDockShipRequest
 */
 func (a *FleetAPIService) DockShip(ctx context.Context, shipSymbol string) ApiDockShipRequest {
 	return ApiDockShipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return DockShip200Response
+//
+//	@return DockShip200Response
 func (a *FleetAPIService) DockShipExecute(r ApiDockShipRequest) (*DockShip200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DockShip200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DockShip200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.DockShip")
@@ -669,9 +674,9 @@ func (a *FleetAPIService) DockShipExecute(r ApiDockShipRequest) (*DockShip200Res
 }
 
 type ApiExtractResourcesRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx                     context.Context
+	ApiService              *FleetAPIService
+	shipSymbol              string
 	extractResourcesRequest *ExtractResourcesRequest
 }
 
@@ -691,26 +696,27 @@ Extract resources from a waypoint that can be extracted, such as asteroid fields
 
 The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiExtractResourcesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiExtractResourcesRequest
 */
 func (a *FleetAPIService) ExtractResources(ctx context.Context, shipSymbol string) ApiExtractResourcesRequest {
 	return ApiExtractResourcesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return ExtractResources201Response
+//
+//	@return ExtractResources201Response
 func (a *FleetAPIService) ExtractResourcesExecute(r ApiExtractResourcesRequest) (*ExtractResources201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ExtractResources201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ExtractResources201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.ExtractResources")
@@ -782,7 +788,7 @@ func (a *FleetAPIService) ExtractResourcesExecute(r ApiExtractResourcesRequest) 
 }
 
 type ApiGetMountsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -796,26 +802,27 @@ GetMounts Get Mounts
 
 Get the mounts installed on a ship.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship's symbol.
- @return ApiGetMountsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship's symbol.
+	@return ApiGetMountsRequest
 */
 func (a *FleetAPIService) GetMounts(ctx context.Context, shipSymbol string) ApiGetMountsRequest {
 	return ApiGetMountsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetMounts200Response
+//
+//	@return GetMounts200Response
 func (a *FleetAPIService) GetMountsExecute(r ApiGetMountsRequest) (*GetMounts200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetMounts200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetMounts200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.GetMounts")
@@ -885,7 +892,7 @@ func (a *FleetAPIService) GetMountsExecute(r ApiGetMountsRequest) (*GetMounts200
 }
 
 type ApiGetMyShipRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -899,26 +906,27 @@ GetMyShip Get Ship
 
 Retrieve the details of a ship under your agent's ownership.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The symbol of the ship.
- @return ApiGetMyShipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The symbol of the ship.
+	@return ApiGetMyShipRequest
 */
 func (a *FleetAPIService) GetMyShip(ctx context.Context, shipSymbol string) ApiGetMyShipRequest {
 	return ApiGetMyShipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetMyShip200Response
+//
+//	@return GetMyShip200Response
 func (a *FleetAPIService) GetMyShipExecute(r ApiGetMyShipRequest) (*GetMyShip200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetMyShip200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetMyShip200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.GetMyShip")
@@ -988,7 +996,7 @@ func (a *FleetAPIService) GetMyShipExecute(r ApiGetMyShipRequest) (*GetMyShip200
 }
 
 type ApiGetMyShipCargoRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -1002,26 +1010,27 @@ GetMyShipCargo Get Ship Cargo
 
 Retrieve the cargo of a ship under your agent's ownership.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The symbol of the ship.
- @return ApiGetMyShipCargoRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The symbol of the ship.
+	@return ApiGetMyShipCargoRequest
 */
 func (a *FleetAPIService) GetMyShipCargo(ctx context.Context, shipSymbol string) ApiGetMyShipCargoRequest {
 	return ApiGetMyShipCargoRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetMyShipCargo200Response
+//
+//	@return GetMyShipCargo200Response
 func (a *FleetAPIService) GetMyShipCargoExecute(r ApiGetMyShipCargoRequest) (*GetMyShipCargo200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetMyShipCargo200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetMyShipCargo200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.GetMyShipCargo")
@@ -1091,10 +1100,10 @@ func (a *FleetAPIService) GetMyShipCargoExecute(r ApiGetMyShipCargoRequest) (*Ge
 }
 
 type ApiGetMyShipsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
-	page *int32
-	limit *int32
+	page       *int32
+	limit      *int32
 }
 
 // What entry offset to request
@@ -1118,24 +1127,25 @@ GetMyShips List Ships
 
 Return a paginated list of all of ships under your agent's ownership.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetMyShipsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetMyShipsRequest
 */
 func (a *FleetAPIService) GetMyShips(ctx context.Context) ApiGetMyShipsRequest {
 	return ApiGetMyShipsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetMyShips200Response
+//
+//	@return GetMyShips200Response
 func (a *FleetAPIService) GetMyShipsExecute(r ApiGetMyShipsRequest) (*GetMyShips200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetMyShips200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetMyShips200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.GetMyShips")
@@ -1210,7 +1220,7 @@ func (a *FleetAPIService) GetMyShipsExecute(r ApiGetMyShipsRequest) (*GetMyShips
 }
 
 type ApiGetShipCooldownRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -1228,26 +1238,27 @@ Your ship cannot perform additional actions until your cooldown has expired. The
 
 Response returns a 204 status code (no-content) when the ship has no cooldown.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The symbol of the ship.
- @return ApiGetShipCooldownRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The symbol of the ship.
+	@return ApiGetShipCooldownRequest
 */
 func (a *FleetAPIService) GetShipCooldown(ctx context.Context, shipSymbol string) ApiGetShipCooldownRequest {
 	return ApiGetShipCooldownRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetShipCooldown200Response
+//
+//	@return GetShipCooldown200Response
 func (a *FleetAPIService) GetShipCooldownExecute(r ApiGetShipCooldownRequest) (*GetShipCooldown200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetShipCooldown200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetShipCooldown200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.GetShipCooldown")
@@ -1317,7 +1328,7 @@ func (a *FleetAPIService) GetShipCooldownExecute(r ApiGetShipCooldownRequest) (*
 }
 
 type ApiGetShipNavRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -1331,26 +1342,27 @@ GetShipNav Get Ship Nav
 
 Get the current nav status of a ship.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiGetShipNavRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiGetShipNavRequest
 */
 func (a *FleetAPIService) GetShipNav(ctx context.Context, shipSymbol string) ApiGetShipNavRequest {
 	return ApiGetShipNavRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetShipNav200Response
+//
+//	@return GetShipNav200Response
 func (a *FleetAPIService) GetShipNavExecute(r ApiGetShipNavRequest) (*GetShipNav200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetShipNav200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetShipNav200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.GetShipNav")
@@ -1420,9 +1432,9 @@ func (a *FleetAPIService) GetShipNavExecute(r ApiGetShipNavRequest) (*GetShipNav
 }
 
 type ApiInstallMountRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx                 context.Context
+	ApiService          *FleetAPIService
+	shipSymbol          string
 	installMountRequest *InstallMountRequest
 }
 
@@ -1442,28 +1454,29 @@ Install a mount on a ship.
 
 In order to install a mount, the ship must be docked and located in a waypoint that has a `Shipyard` trait. The ship also must have the mount to install in its cargo hold.
 
-An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
+An installation fee will be deduced by the Shipyard for installing the mount on the ship.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship's symbol.
- @return ApiInstallMountRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship's symbol.
+	@return ApiInstallMountRequest
 */
 func (a *FleetAPIService) InstallMount(ctx context.Context, shipSymbol string) ApiInstallMountRequest {
 	return ApiInstallMountRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return InstallMount201Response
+//
+//	@return InstallMount201Response
 func (a *FleetAPIService) InstallMountExecute(r ApiInstallMountRequest) (*InstallMount201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *InstallMount201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *InstallMount201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.InstallMount")
@@ -1535,9 +1548,9 @@ func (a *FleetAPIService) InstallMountExecute(r ApiInstallMountRequest) (*Instal
 }
 
 type ApiJettisonRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx             context.Context
+	ApiService      *FleetAPIService
+	shipSymbol      string
 	jettisonRequest *JettisonRequest
 }
 
@@ -1555,26 +1568,27 @@ Jettison Jettison Cargo
 
 Jettison cargo from your ship's cargo hold.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiJettisonRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiJettisonRequest
 */
 func (a *FleetAPIService) Jettison(ctx context.Context, shipSymbol string) ApiJettisonRequest {
 	return ApiJettisonRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return Jettison200Response
+//
+//	@return Jettison200Response
 func (a *FleetAPIService) JettisonExecute(r ApiJettisonRequest) (*Jettison200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Jettison200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Jettison200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.Jettison")
@@ -1646,9 +1660,9 @@ func (a *FleetAPIService) JettisonExecute(r ApiJettisonRequest) (*Jettison200Res
 }
 
 type ApiJumpShipRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx             context.Context
+	ApiService      *FleetAPIService
+	shipSymbol      string
 	jumpShipRequest *JumpShipRequest
 }
 
@@ -1668,26 +1682,27 @@ Jump your ship instantly to a target system. The ship must be in orbit to use th
 
 When used elsewhere, jumping requires the ship to have a `Jump Drive` module installed and consumes a unit of antimatter from the ship's cargo. The command will fail if there is no antimatter to consume. When jumping via the `Jump Drive` module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiJumpShipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiJumpShipRequest
 */
 func (a *FleetAPIService) JumpShip(ctx context.Context, shipSymbol string) ApiJumpShipRequest {
 	return ApiJumpShipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return JumpShip200Response
+//
+//	@return JumpShip200Response
 func (a *FleetAPIService) JumpShipExecute(r ApiJumpShipRequest) (*JumpShip200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *JumpShip200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *JumpShip200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.JumpShip")
@@ -1759,13 +1774,12 @@ func (a *FleetAPIService) JumpShipExecute(r ApiJumpShipRequest) (*JumpShip200Res
 }
 
 type ApiNavigateShipRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx                 context.Context
+	ApiService          *FleetAPIService
+	shipSymbol          string
 	navigateShipRequest *NavigateShipRequest
 }
 
-// 
 func (r ApiNavigateShipRequest) NavigateShipRequest(navigateShipRequest NavigateShipRequest) ApiNavigateShipRequest {
 	r.navigateShipRequest = &navigateShipRequest
 	return r
@@ -1784,26 +1798,27 @@ The returned response will detail the route information including the expected t
 
 To travel between systems, see the ship's Warp or Jump actions.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiNavigateShipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiNavigateShipRequest
 */
 func (a *FleetAPIService) NavigateShip(ctx context.Context, shipSymbol string) ApiNavigateShipRequest {
 	return ApiNavigateShipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return NavigateShip200Response
+//
+//	@return NavigateShip200Response
 func (a *FleetAPIService) NavigateShipExecute(r ApiNavigateShipRequest) (*NavigateShip200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NavigateShip200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NavigateShip200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.NavigateShip")
@@ -1875,7 +1890,7 @@ func (a *FleetAPIService) NavigateShipExecute(r ApiNavigateShipRequest) (*Naviga
 }
 
 type ApiNegotiateContractRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -1891,30 +1906,31 @@ Negotiate a new contract with the HQ.
 
 In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.
 
-Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept. 
+Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.
 
 The ship must be present at a faction's HQ waypoint to negotiate a contract with that faction.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship's symbol.
- @return ApiNegotiateContractRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship's symbol.
+	@return ApiNegotiateContractRequest
 */
 func (a *FleetAPIService) NegotiateContract(ctx context.Context, shipSymbol string) ApiNegotiateContractRequest {
 	return ApiNegotiateContractRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return NegotiateContract200Response
+//
+//	@return NegotiateContract200Response
 func (a *FleetAPIService) NegotiateContractExecute(r ApiNegotiateContractRequest) (*NegotiateContract200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NegotiateContract200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NegotiateContract200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.NegotiateContract")
@@ -1984,7 +2000,7 @@ func (a *FleetAPIService) NegotiateContractExecute(r ApiNegotiateContractRequest
 }
 
 type ApiOrbitShipRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *FleetAPIService
 	shipSymbol string
 }
@@ -2002,26 +2018,27 @@ Orbiting ships are able to do actions that require the ship to be above surface 
 
 The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The symbol of the ship.
- @return ApiOrbitShipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The symbol of the ship.
+	@return ApiOrbitShipRequest
 */
 func (a *FleetAPIService) OrbitShip(ctx context.Context, shipSymbol string) ApiOrbitShipRequest {
 	return ApiOrbitShipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return OrbitShip200Response
+//
+//	@return OrbitShip200Response
 func (a *FleetAPIService) OrbitShipExecute(r ApiOrbitShipRequest) (*OrbitShip200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OrbitShip200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OrbitShip200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.OrbitShip")
@@ -2091,9 +2108,9 @@ func (a *FleetAPIService) OrbitShipExecute(r ApiOrbitShipRequest) (*OrbitShip200
 }
 
 type ApiPatchShipNavRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx                 context.Context
+	ApiService          *FleetAPIService
+	shipSymbol          string
 	patchShipNavRequest *PatchShipNavRequest
 }
 
@@ -2113,26 +2130,27 @@ Update the nav configuration of a ship.
 
 Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiPatchShipNavRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiPatchShipNavRequest
 */
 func (a *FleetAPIService) PatchShipNav(ctx context.Context, shipSymbol string) ApiPatchShipNavRequest {
 	return ApiPatchShipNavRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return GetShipNav200Response
+//
+//	@return GetShipNav200Response
 func (a *FleetAPIService) PatchShipNavExecute(r ApiPatchShipNavRequest) (*GetShipNav200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetShipNav200Response
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetShipNav200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.PatchShipNav")
@@ -2204,9 +2222,9 @@ func (a *FleetAPIService) PatchShipNavExecute(r ApiPatchShipNavRequest) (*GetShi
 }
 
 type ApiPurchaseCargoRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx                  context.Context
+	ApiService           *FleetAPIService
+	shipSymbol           string
 	purchaseCargoRequest *PurchaseCargoRequest
 }
 
@@ -2230,26 +2248,27 @@ The maximum amount of units of a good that can be purchased in each transaction 
 
 Purchased goods are added to the ship's cargo hold.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship's symbol.
- @return ApiPurchaseCargoRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship's symbol.
+	@return ApiPurchaseCargoRequest
 */
 func (a *FleetAPIService) PurchaseCargo(ctx context.Context, shipSymbol string) ApiPurchaseCargoRequest {
 	return ApiPurchaseCargoRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return PurchaseCargo201Response
+//
+//	@return PurchaseCargo201Response
 func (a *FleetAPIService) PurchaseCargoExecute(r ApiPurchaseCargoRequest) (*PurchaseCargo201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PurchaseCargo201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PurchaseCargo201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.PurchaseCargo")
@@ -2321,8 +2340,8 @@ func (a *FleetAPIService) PurchaseCargoExecute(r ApiPurchaseCargoRequest) (*Purc
 }
 
 type ApiPurchaseShipRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
+	ctx                 context.Context
+	ApiService          *FleetAPIService
 	purchaseShipRequest *PurchaseShipRequest
 }
 
@@ -2342,24 +2361,25 @@ Purchase a ship from a Shipyard. In order to use this function, a ship under you
 
 Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPurchaseShipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPurchaseShipRequest
 */
 func (a *FleetAPIService) PurchaseShip(ctx context.Context) ApiPurchaseShipRequest {
 	return ApiPurchaseShipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return PurchaseShip201Response
+//
+//	@return PurchaseShip201Response
 func (a *FleetAPIService) PurchaseShipExecute(r ApiPurchaseShipRequest) (*PurchaseShip201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PurchaseShip201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PurchaseShip201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.PurchaseShip")
@@ -2430,9 +2450,9 @@ func (a *FleetAPIService) PurchaseShipExecute(r ApiPurchaseShipRequest) (*Purcha
 }
 
 type ApiRefuelShipRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx               context.Context
+	ApiService        *FleetAPIService
+	shipSymbol        string
 	refuelShipRequest *RefuelShipRequest
 }
 
@@ -2456,26 +2476,27 @@ Each fuel bought from the market replenishes 100 units in your ship's fuel.
 
 Ships will always be refuel to their frame's maximum fuel capacity when using this action.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiRefuelShipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiRefuelShipRequest
 */
 func (a *FleetAPIService) RefuelShip(ctx context.Context, shipSymbol string) ApiRefuelShipRequest {
 	return ApiRefuelShipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return RefuelShip200Response
+//
+//	@return RefuelShip200Response
 func (a *FleetAPIService) RefuelShipExecute(r ApiRefuelShipRequest) (*RefuelShip200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *RefuelShip200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *RefuelShip200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.RefuelShip")
@@ -2547,9 +2568,9 @@ func (a *FleetAPIService) RefuelShipExecute(r ApiRefuelShipRequest) (*RefuelShip
 }
 
 type ApiRemoveMountRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx                context.Context
+	ApiService         *FleetAPIService
+	shipSymbol         string
 	removeMountRequest *RemoveMountRequest
 }
 
@@ -2571,26 +2592,27 @@ The ship must be docked in a waypoint that has the `Shipyard` trait, and must ha
 
 A removal fee will be deduced from the agent by the Shipyard.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship's symbol.
- @return ApiRemoveMountRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship's symbol.
+	@return ApiRemoveMountRequest
 */
 func (a *FleetAPIService) RemoveMount(ctx context.Context, shipSymbol string) ApiRemoveMountRequest {
 	return ApiRemoveMountRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return RemoveMount201Response
+//
+//	@return RemoveMount201Response
 func (a *FleetAPIService) RemoveMountExecute(r ApiRemoveMountRequest) (*RemoveMount201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *RemoveMount201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *RemoveMount201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.RemoveMount")
@@ -2662,9 +2684,9 @@ func (a *FleetAPIService) RemoveMountExecute(r ApiRemoveMountRequest) (*RemoveMo
 }
 
 type ApiSellCargoRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx              context.Context
+	ApiService       *FleetAPIService
+	shipSymbol       string
 	sellCargoRequest *SellCargoRequest
 }
 
@@ -2682,26 +2704,27 @@ SellCargo Sell Cargo
 
 Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the `Marketplace` trait in order to use this function.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol Symbol of a ship.
- @return ApiSellCargoRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol Symbol of a ship.
+	@return ApiSellCargoRequest
 */
 func (a *FleetAPIService) SellCargo(ctx context.Context, shipSymbol string) ApiSellCargoRequest {
 	return ApiSellCargoRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return SellCargo201Response
+//
+//	@return SellCargo201Response
 func (a *FleetAPIService) SellCargoExecute(r ApiSellCargoRequest) (*SellCargo201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SellCargo201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SellCargo201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.SellCargo")
@@ -2773,9 +2796,9 @@ func (a *FleetAPIService) SellCargoExecute(r ApiSellCargoRequest) (*SellCargo201
 }
 
 type ApiShipRefineRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx               context.Context
+	ApiService        *FleetAPIService
+	shipSymbol        string
 	shipRefineRequest *ShipRefineRequest
 }
 
@@ -2795,26 +2818,27 @@ Attempt to refine the raw materials on your ship. The request will only succeed 
 
 When refining, 30 basic goods will be converted into 10 processed goods.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The symbol of the ship.
- @return ApiShipRefineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The symbol of the ship.
+	@return ApiShipRefineRequest
 */
 func (a *FleetAPIService) ShipRefine(ctx context.Context, shipSymbol string) ApiShipRefineRequest {
 	return ApiShipRefineRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return ShipRefine201Response
+//
+//	@return ShipRefine201Response
 func (a *FleetAPIService) ShipRefineExecute(r ApiShipRefineRequest) (*ShipRefine201Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ShipRefine201Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ShipRefine201Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.ShipRefine")
@@ -2886,9 +2910,9 @@ func (a *FleetAPIService) ShipRefineExecute(r ApiShipRefineRequest) (*ShipRefine
 }
 
 type ApiTransferCargoRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx                  context.Context
+	ApiService           *FleetAPIService
+	shipSymbol           string
 	transferCargoRequest *TransferCargoRequest
 }
 
@@ -2910,26 +2934,27 @@ The receiving ship must be in the same waypoint as the transferring ship, and it
 
 The response body's cargo shows the cargo of the transferring ship after the transfer is complete.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The transferring ship's symbol.
- @return ApiTransferCargoRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The transferring ship's symbol.
+	@return ApiTransferCargoRequest
 */
 func (a *FleetAPIService) TransferCargo(ctx context.Context, shipSymbol string) ApiTransferCargoRequest {
 	return ApiTransferCargoRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return TransferCargo200Response
+//
+//	@return TransferCargo200Response
 func (a *FleetAPIService) TransferCargoExecute(r ApiTransferCargoRequest) (*TransferCargo200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TransferCargo200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TransferCargo200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.TransferCargo")
@@ -3001,13 +3026,12 @@ func (a *FleetAPIService) TransferCargoExecute(r ApiTransferCargoRequest) (*Tran
 }
 
 type ApiWarpShipRequest struct {
-	ctx context.Context
-	ApiService *FleetAPIService
-	shipSymbol string
+	ctx                 context.Context
+	ApiService          *FleetAPIService
+	shipSymbol          string
 	navigateShipRequest *NavigateShipRequest
 }
 
-// 
 func (r ApiWarpShipRequest) NavigateShipRequest(navigateShipRequest NavigateShipRequest) ApiWarpShipRequest {
 	r.navigateShipRequest = &navigateShipRequest
 	return r
@@ -3024,26 +3048,27 @@ Warp your ship to a target destination in another system. The ship must be in or
 
 The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param shipSymbol The ship symbol.
- @return ApiWarpShipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param shipSymbol The ship symbol.
+	@return ApiWarpShipRequest
 */
 func (a *FleetAPIService) WarpShip(ctx context.Context, shipSymbol string) ApiWarpShipRequest {
 	return ApiWarpShipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		shipSymbol: shipSymbol,
 	}
 }
 
 // Execute executes the request
-//  @return NavigateShip200Response
+//
+//	@return NavigateShip200Response
 func (a *FleetAPIService) WarpShipExecute(r ApiWarpShipRequest) (*NavigateShip200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NavigateShip200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NavigateShip200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FleetAPIService.WarpShip")
