@@ -2,3 +2,7 @@ data/**/*
 .env
 .vscode/
 build/spacetraders
+bazel-bin
+bazel-out
+bazel-spacetraders
+bazel-testlogs

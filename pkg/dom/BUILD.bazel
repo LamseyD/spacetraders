@@ -1,0 +1,11 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "dom",
+    srcs = [
+        "error.go",
+        "user.go",
+    ],
+    importpath = "space-traders-playground/pkg/dom",
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "cmd",
+    srcs = [
+        "common.go",
+        "playground.go",
+        "root.go",
+        "serve.go",
+    ],
+    importpath = "space-traders-playground/pkg/cmd",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/repository/mongo",
+        "//pkg/service",
+        "@com_github_labstack_echo//:go_default_library",
+        "@com_github_spf13_cobra//:go_default_library",
+        "@com_github_spf13_viper//:go_default_library",
+        "@com_github_vrischmann_envconfig//:go_default_library",
+        "@org_uber_go_zap//:go_default_library",
+    ],
+)
